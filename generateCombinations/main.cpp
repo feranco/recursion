@@ -1,5 +1,6 @@
 #include "powerSetParams.h"
 #include "powerSetReturn.h"
+#include "powerSetBacktracking.h"
 #include <iostream>
 #include <vector>
 #include <stdexcept>
@@ -12,12 +13,13 @@ int main(int argc, char**argv) {
   
   auto powerSet = powerSetParams(items);
   auto samePowerSet = powerSetReturn(items);
+  auto samePowerSetB = powerSetBacktracking(items);
 
   if (!std::equal(powerSet.begin(), powerSet.end(), samePowerSet.begin())) {
     throw std::runtime_error("powerSetParams different from powerSetReturn");
   }
   
-  for (auto set : powerSet) {    
+  for (auto set : samePowerSetB) {    
     for (auto item : set) {
       std::cout << item << " ";
     }
