@@ -44,9 +44,31 @@ void wordBreak (string s, unordered_set<string> dict, size_t k, string currentBr
 }
 
 
-vector<string> wordBreak (string s, unordered_set<string> dict) {
+vector<string> wordBreakReturn (string s, unordered_set<string> dict, size_t k) {
+  
   vector<string> result;
+  
+  if (k == s.size()) {
+    result.emplace_back("");
+    return result;
+  }
+
+  for (string word : dict) {
+    if (s.substr(k, word.size()) == word) {
+      auto res = wordBreakReturn(s, dict, k+word.size());
+      for (string& s : res) {
+	s = word + " " + s;
+      }
+      result.insert(result.begin(), res.begin(), res.end());
+    }
+  }
+  return result;
+}
+
+vector<string> wordBreak (string s, unordered_set<string> dict) {
+  /*vector<string> result;
   string currentBreak;
   wordBreak(s, dict, 0, currentBreak, result);
-  return result;
+  */
+  return wordBreakReturn(s, dict, 0);
 }
