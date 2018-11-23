@@ -21,9 +21,9 @@ vector<vector<int>> arrayOfArrays(const vector<vector<int>>& arr2d, unsigned int
   return result;
 }
 
-//Time Complexity: O(max(|arr1d|)^|arr2d|*|arr2d|) In the worst case the branching factor is the size of the bigger 1d array
-// and the depth is the number of 1d arrays contained in the 2d array. Each combination is then copied in O(|arr2d|)
-//O(max(|arr1d|)^|arr2d|*|arr2d|) is the space necessary to store all the possible substring combinations.
+//Time Complexity: O(max(|arr1d|)^|arr2d|). In the worst case the branching factor is the size of the bigger 1d array
+// and the depth is the number of 1d arrays contained in the 2d array.
+//O(max(|arr1d|)^|arr2d|*|arr2d|) is the space necessary to store all the possible array combinations.
 void arrayOfArrays(const vector<vector<int>>& arr2d, unsigned int k, vector<int>& arr1d, vector<vector<int>>& result) {
 
   if (k == arr2d.size()) {
