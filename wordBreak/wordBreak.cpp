@@ -1,13 +1,12 @@
 #include "wordBreak.h"
 #include <iostream>
 
-//O(|s|^|s|*|s|) time. In the worst case the branching factor is |s| and the depth is also |s|.
-//Each decomposition is then copied in O(|s|)
+//O(|s|^|s|) = O(|s|!) time. In the worst case the branching factor is |s| and the depth is also |s|.
 //O(|s|^|s|*|s|) space necessary to store all the possible substring combinations.
 void wordBreak2 (string s, unordered_set<string> dict, size_t k, string currentBreak, vector<string>& result) {
 
   if (k == s.size()) {
-    result.emplace_back(currentBreak);
+    result.push_back(currentBreak);
     return;
   }
 
@@ -25,13 +24,12 @@ void wordBreak2 (string s, unordered_set<string> dict, size_t k, string currentB
 
 }
 
-//O(|dict|^|s|*|s|) time. In the worst case the branching factor is |dict| and the depth is |s|.
-//Each decomposition is then copied in O(|s|)
+//O(|dict|^|s|*|s|) = O(|s|!) time. In the worst case the branching factor is |dict| and the depth is |s|.
 //O(|s|^|s|*|s|) space necessary to store all the possible substring combinations.
 void wordBreak (string s, unordered_set<string> dict, size_t k, string currentBreak, vector<string>& result) {
 
   if (k == s.size()) {
-    result.emplace_back(currentBreak);
+    result.push_back(currentBreak);
     return;
   }
 
