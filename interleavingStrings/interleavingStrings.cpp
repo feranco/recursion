@@ -3,6 +3,12 @@
 #include <iostream>
 #include <stdexcept>
 
+//return by result:
+//f(s1,s2,i,j) compute all strings obtained interleaving s1[i..] and s2[j..] as
+//{f(s1,s2,i+1,j) + s[i]} U {f(s1,s2,i,j+1) + s[j]} where:
+//f(s1,s2,i+1,j) + s[i] means add s[i] to all strings obtained interleaving s1[i+1..] and s2[j..]
+//f(s1,s2,i,j+1) + s[j] means add s[j] to all strings obtained interleaving s1[i..] and s2[j+1..]
+//U means the union operation
 vector<string> interleave (const string& s1, const string& s2, size_t i, size_t j) {
   
   if (i == s1.size() && j == s2.size()) {
@@ -24,12 +30,21 @@ vector<string> interleave (const string& s1, const string& s2, size_t i, size_t 
       s.push_back(s2[j]);
     }
   }
-
+  
   vector<string> result = resultS1;
   result.insert(result.end(), resultS2.begin(), resultS2.end());
   return result;
 }
 
+//return by parameter:
+//f(s1,s2,i,j) compute all strings obtained interleaving s1[i..] and s2[j..]
+//first computing all string beginning with s[i] followed by all string obtained interleaving s1[i+1..] and s2[j..]
+//then computing all string beginning with s[j] followed by all string obtained interleaving s1[i...] and s2[j+1..]
+//in other words:
+//{s[i]+f(s1,s2,i+1,j)} U {s[j] + f(s1,s2,i,j+1)} where:
+//s[i]+f(s1,s2,i+1,j) means prepend s[i] to all strings obtained interleaving s1[i+1..] and s2[j..]
+//s[j] + f(s1,s2,i,j+1) means prepend s[j] to all strings obtained interleaving s1[i..] and s2[j+1..]
+//U means the union operation executed implictly adding the string to the result vector
 void interleave (const string& s1, const string& s2, size_t i, size_t j, string interleaved, vector<string>& result) {
   
   if (i == s1.size() && j == s2.size()) {
