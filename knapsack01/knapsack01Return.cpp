@@ -1,8 +1,4 @@
-#pragma once
-
-#include <vector>
-#include <iostream>
-#include "structures.h"
+#include "knapsack01.h"
 
 Result knapsack01 (const vector<Item>& items, uint capacity, uint k, uint knapsackWeight, uint knapsackValue) {
 

@@ -1,14 +1,10 @@
-#pragma once
-#include <vector>
-#include <iostream>
-#include "structures.h"
+#include "knapsack01.h"
 
 void knapsack01 (const vector<Item>& items, uint capacity, uint k, uint knapsackWeight, uint knapsackValue, vector<uint>& knapsackItems, Result& result) {
 
   if (knapsackWeight > capacity) return;
 
   if (k == items.size()) {
-    //maxValue = std::max(maxValue, knapsackValue);
     if (knapsackValue > result.value) {
       result.value = knapsackValue;
       result.items = knapsackItems;

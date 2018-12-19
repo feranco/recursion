@@ -14,3 +14,6 @@ struct Result {
   vector<uint> items;
   uint value;
 };
+
+Result knapsack01Return (const vector<Item>& items, unsigned int capacity);
+Result knapsack01Params (const vector<Item>& items, unsigned int capacity);
