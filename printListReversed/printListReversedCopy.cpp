@@ -1,16 +1,15 @@
 #include <iostream>
 #include <stack>
-#include <memory>
 
 template <typename T>
 struct Node {
   Node(T d, Node<T>* n) : data(d), next(n){}
   T data;
-  std::unique_ptr<Node<T>> next;
+  Node<T>* next;
 };
 
 template <typename T>
-void printListReversedIterative (const std::unique_ptr<Node<T>>& head) {
+void printListReversedIterative (const Node<T>* head) {
 
   std:: stack<T> data;
 
@@ -26,7 +25,7 @@ void printListReversedIterative (const std::unique_ptr<Node<T>>& head) {
 }
 
 template <typename T>
-void printListReversedRecursive (const std::unique_ptr<Node<T>>& head) {
+void printListReversedRecursive (const Node<T>* head) {
 
   if (head == nullptr) return;
   printListReversedRecursive(head->next);
@@ -34,7 +33,7 @@ void printListReversedRecursive (const std::unique_ptr<Node<T>>& head) {
 }
 
 int main () {
-  std::unique_ptr<Node<int>> head(new Node<int> (3, nullptr));//new Node<int>(1, new Node<int> (2, new Node<int> (3, nullptr)));
+  Node<int>* head = new Node<int>(1, new Node<int> (2, new Node<int> (3, nullptr)));
   printListReversedIterative(head);
   printListReversedRecursive(head);
 }
