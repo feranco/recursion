@@ -10,9 +10,9 @@ using PowerSet = std::vector<Set<T>>;
 
 template <typename T>
 void generatePowerSet (const std::vector<T>& items, unsigned int i, PowerSet<T>& result, Set<T> currentSet) {
-  
+
   if (i == items.size()) {
-    result.emplace_back(currentSet);
+    result.emplace_back(std::move(currentSet));
     return;
   }
 
@@ -25,10 +25,7 @@ void generatePowerSet (const std::vector<T>& items, unsigned int i, PowerSet<T>&
 template <typename T>
 PowerSet<T> powerSetParams (const std::vector<T>& items) {
   PowerSet<T> result;
-  generatePowerSet(items, 0, result, Set<T>());
+  Set<T> currentSet;
+  generatePowerSet(items, 0, result, currentSet);
   return result;
 }
-
-
-
-
